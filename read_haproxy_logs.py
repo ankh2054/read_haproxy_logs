@@ -15,16 +15,15 @@ def read_and_count(file_path):
     
     # New regex pattern for /atomicassets/
     pattern2 = re.compile(r' \d+/\d+/\d+/\d+/\d+ 200 \d+ - - [\-\+]+ \d+/\d+/\d+/\d+/\d+ \d+/\d+ \"(POST|GET) /atomicassets/.* HTTP/1\.\d+\"')
+
     
-    # Check if the file is gzipped
-        
     # Check if the file is gzipped
     if file_path.endswith('.gz'):
         f = gzip.open(file_path, 'rt')
     else:
         f = open(file_path, 'r')
         
-    # Read line by line
+    # Loop over lines
     for line in f:
         match1 = pattern1.search(line)
         if match1:
